@@ -1,4 +1,4 @@
-// Copyright 2018 The go-wanliuno Authors
+// Copyright 2018 The go-ethereum Authors
 // This file is part of the go-wanliuno library.
 //
 // The go-wanliuno library is free software: you can redistribute it and/or modify
@@ -21,56 +21,56 @@ import (
 )
 
 func TestURLParsing(t *testing.T) {
-	url, err := parseURL("https://wanliuno.org")
+	url, err := parseURL("https://wanli.uno")
 	if err != nil {
 		t.Errorf("unexpected error: %v", err)
 	}
 	if url.Scheme != "https" {
 		t.Errorf("expected: %v, got: %v", "https", url.Scheme)
 	}
-	if url.Path != "wanliuno.org" {
-		t.Errorf("expected: %v, got: %v", "wanliuno.org", url.Path)
+	if url.Path != "wanli.uno" {
+		t.Errorf("expected: %v, got: %v", "wanli.uno", url.Path)
 	}
 
-	_, err = parseURL("wanliuno.org")
+	_, err = parseURL("wanli.uno")
 	if err == nil {
 		t.Error("expected err, got: nil")
 	}
 }
 
 func TestURLString(t *testing.T) {
-	url := URL{Scheme: "https", Path: "wanliuno.org"}
-	if url.String() != "https://wanliuno.org" {
-		t.Errorf("expected: %v, got: %v", "https://wanliuno.org", url.String())
+	url := URL{Scheme: "https", Path: "wanli.uno"}
+	if url.String() != "https://wanli.uno" {
+		t.Errorf("expected: %v, got: %v", "https://wanli.uno", url.String())
 	}
 
-	url = URL{Scheme: "", Path: "wanliuno.org"}
-	if url.String() != "wanliuno.org" {
-		t.Errorf("expected: %v, got: %v", "wanliuno.org", url.String())
+	url = URL{Scheme: "", Path: "wanli.uno"}
+	if url.String() != "wanli.uno" {
+		t.Errorf("expected: %v, got: %v", "wanli.uno", url.String())
 	}
 }
 
 func TestURLMarshalJSON(t *testing.T) {
-	url := URL{Scheme: "https", Path: "wanliuno.org"}
+	url := URL{Scheme: "https", Path: "wanli.uno"}
 	json, err := url.MarshalJSON()
 	if err != nil {
 		t.Errorf("unexpcted error: %v", err)
 	}
-	if string(json) != "\"https://wanliuno.org\"" {
-		t.Errorf("expected: %v, got: %v", "\"https://wanliuno.org\"", string(json))
+	if string(json) != "\"https://wanli.uno\"" {
+		t.Errorf("expected: %v, got: %v", "\"https://wanli.uno\"", string(json))
 	}
 }
 
 func TestURLUnmarshalJSON(t *testing.T) {
 	url := &URL{}
-	err := url.UnmarshalJSON([]byte("\"https://wanliuno.org\""))
+	err := url.UnmarshalJSON([]byte("\"https://wanli.uno\""))
 	if err != nil {
 		t.Errorf("unexpcted error: %v", err)
 	}
 	if url.Scheme != "https" {
 		t.Errorf("expected: %v, got: %v", "https", url.Scheme)
 	}
-	if url.Path != "wanliuno.org" {
+	if url.Path != "wanli.uno" {
 		t.Errorf("expected: %v, got: %v", "https", url.Path)
 	}
 }
@@ -81,10 +81,10 @@ func TestURLComparison(t *testing.T) {
 		urlB   URL
 		expect int
 	}{
-		{URL{"https", "wanliuno.org"}, URL{"https", "wanliuno.org"}, 0},
-		{URL{"http", "wanliuno.org"}, URL{"https", "wanliuno.org"}, -1},
-		{URL{"https", "wanliuno.org/a"}, URL{"https", "wanliuno.org"}, 1},
-		{URL{"https", "abc.org"}, URL{"https", "wanliuno.org"}, -1},
+		{URL{"https", "wanli.uno"}, URL{"https", "wanli.uno"}, 0},
+		{URL{"http", "wanli.uno"}, URL{"https", "wanli.uno"}, -1},
+		{URL{"https", "wanli.uno/a"}, URL{"https", "wanli.uno"}, 1},
+		{URL{"https", "abc.org"}, URL{"https", "wanli.uno"}, -1},
 	}
 
 	for i, tt := range tests {
