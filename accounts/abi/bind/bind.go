@@ -1,4 +1,4 @@
-// Copyright 2016 The go-ethereum Authors
+// Copyright 2016 The go-wanliuno Authors
 // This file is part of the go-wanliuno library.
 //
 // The go-wanliuno library is free software: you can redistribute it and/or modify
@@ -416,10 +416,10 @@ func bindStructTypeGo(kind abi.Type, structs map[string]*tmplStruct) string {
 	switch kind.T {
 	case abi.TupleTy:
 		// We compose raw struct name and canonical parameter expression
-		// together here. The reason is before solidity v0.5.11, kind.TupleRawName
+		// towanliunoer here. The reason is before solidity v0.5.11, kind.TupleRawName
 		// is empty, so we use canonical parameter expression to distinguish
 		// different struct definition. From the consideration of backward
-		// compatibility, we concat these two together so that if kind.TupleRawName
+		// compatibility, we concat these two towanliunoer so that if kind.TupleRawName
 		// is not empty, it can have unique id.
 		id := kind.TupleRawName + kind.String()
 		if s, exist := structs[id]; exist {
@@ -455,10 +455,10 @@ func bindStructTypeJava(kind abi.Type, structs map[string]*tmplStruct) string {
 	switch kind.T {
 	case abi.TupleTy:
 		// We compose raw struct name and canonical parameter expression
-		// together here. The reason is before solidity v0.5.11, kind.TupleRawName
+		// towanliunoer here. The reason is before solidity v0.5.11, kind.TupleRawName
 		// is empty, so we use canonical parameter expression to distinguish
 		// different struct definition. From the consideration of backward
-		// compatibility, we concat these two together so that if kind.TupleRawName
+		// compatibility, we concat these two towanliunoer so that if kind.TupleRawName
 		// is not empty, it can have unique id.
 		id := kind.TupleRawName + kind.String()
 		if s, exist := structs[id]; exist {

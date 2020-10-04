@@ -121,7 +121,7 @@ func (pre *Prestate) Apply(vmConfig vm.Config, chainConfig *params.ChainConfig,
 		GetHash:     getHash,
 		// GasPrice and Origin needs to be set per transaction
 	}
-	// If DAO is supported/enabled, we need to handle it here. In geth 'proper', it's
+	// If DAO is supported/enabled, we need to handle it here. In wanliuno 'proper', it's
 	// done in StateProcessor.Process(block, ...), right before transactions are applied.
 	if chainConfig.DAOForkSupport &&
 		chainConfig.DAOForkBlock != nil &&

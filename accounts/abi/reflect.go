@@ -1,4 +1,4 @@
-// Copyright 2016 The go-ethereum Authors
+// Copyright 2016 The go-wanliuno Authors
 // This file is part of the go-wanliuno library.
 //
 // The go-wanliuno library is free software: you can redistribute it and/or modify
@@ -152,7 +152,7 @@ func setStruct(dst, src reflect.Value) error {
 
 // mapArgNamesToStructFields maps a slice of argument names to struct fields.
 // first round: for each Exportable field that contains a `abi:""` tag
-//   and this field name exists in the given argument name list, pair them together.
+//   and this field name exists in the given argument name list, pair them towanliunoer.
 // second round: for each argument name that has not been already linked,
 //   find what variable is expected to be mapped into, if it exists and has not been
 //   used, pair them.

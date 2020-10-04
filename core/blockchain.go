@@ -126,7 +126,7 @@ type CacheConfig struct {
 	TrieCleanRejournal  time.Duration // Time interval to dump clean cache to disk periodically
 	TrieCleanNoPrefetch bool          // Whether to disable heuristic state prefetching for followup blocks
 	TrieDirtyLimit      int           // Memory limit (MB) at which to start flushing dirty trie nodes to disk
-	TrieDirtyDisabled   bool          // Whether to disable trie write caching and GC altogether (archive node)
+	TrieDirtyDisabled   bool          // Whether to disable trie write caching and GC altowanliunoer (archive node)
 	TrieTimeLimit       time.Duration // Time limit after which to flush the current in-memory trie to disk
 	SnapshotLimit       int           // Memory allowance (MB) to use for caching snapshot entries in memory
 
@@ -534,7 +534,7 @@ func (bc *BlockChain) SetHead(head uint64) error {
 		// Todo(rjl493456442) txlookup, bloombits, etc
 	}
 	// If SetHead was only called as a chain reparation method, try to skip
-	// touching the header chain altogether, unless the freezer is broken
+	// touching the header chain altowanliunoer, unless the freezer is broken
 	if block := bc.CurrentBlock(); block.NumberU64() == head {
 		if target, force := updateFn(bc.db, block.Header()); force {
 			bc.hc.SetHead(target, updateFn, delFn)

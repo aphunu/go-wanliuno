@@ -1,4 +1,4 @@
-Name "geth ${MAJORVERSION}.${MINORVERSION}.${BUILDVERSION}" # VERSION variables set through command line arguments
+Name "wanliuno ${MAJORVERSION}.${MINORVERSION}.${BUILDVERSION}" # VERSION variables set through command line arguments
 InstallDir "$InstDir"
 OutFile "${OUTPUTFILE}" # set through command line arguments
 
@@ -12,15 +12,15 @@ PageEx license
   LicenseData {{.License}}
 PageExEnd
 
-# Install geth binary
+# Install wanliuno binary
 Section "Geth" GETH_IDX
   SetOutPath $INSTDIR
   file {{.Geth}}
 
   # Create start menu launcher
   createDirectory "$SMPROGRAMS\${APPNAME}"
-  createShortCut "$SMPROGRAMS\${APPNAME}\${APPNAME}.lnk" "$INSTDIR\geth.exe"
-  createShortCut "$SMPROGRAMS\${APPNAME}\Attach.lnk" "$INSTDIR\geth.exe" "attach"
+  createShortCut "$SMPROGRAMS\${APPNAME}\${APPNAME}.lnk" "$INSTDIR\wanliuno.exe"
+  createShortCut "$SMPROGRAMS\${APPNAME}\Attach.lnk" "$INSTDIR\wanliuno.exe" "attach"
   createShortCut "$SMPROGRAMS\${APPNAME}\Uninstall.lnk" "$INSTDIR\uninstall.exe"
 
   # Firewall - remove rules (if exists)
@@ -29,13 +29,13 @@ Section "Geth" GETH_IDX
   SimpleFC::AdvRemoveRule "Geth UDP discovery (UDP:30303)"
 
   # Firewall - add rules
-  SimpleFC::AdvAddRule "Geth incoming peers (TCP:30303)" ""  6 1 1 2147483647 1 "$INSTDIR\geth.exe" "" "" "Wanliuno" 30303 "" "" ""
-  SimpleFC::AdvAddRule "Geth outgoing peers (TCP:30303)" ""  6 2 1 2147483647 1 "$INSTDIR\geth.exe" "" "" "Wanliuno" "" 30303 "" ""
-  SimpleFC::AdvAddRule "Geth UDP discovery (UDP:30303)" "" 17 2 1 2147483647 1 "$INSTDIR\geth.exe" "" "" "Wanliuno" "" 30303 "" ""
+  SimpleFC::AdvAddRule "Geth incoming peers (TCP:30303)" ""  6 1 1 2147483647 1 "$INSTDIR\wanliuno.exe" "" "" "Ethereum" 30303 "" "" ""
+  SimpleFC::AdvAddRule "Geth outgoing peers (TCP:30303)" ""  6 2 1 2147483647 1 "$INSTDIR\wanliuno.exe" "" "" "Ethereum" "" 30303 "" ""
+  SimpleFC::AdvAddRule "Geth UDP discovery (UDP:30303)" "" 17 2 1 2147483647 1 "$INSTDIR\wanliuno.exe" "" "" "Ethereum" "" 30303 "" ""
 
   # Set default IPC endpoint (https://github.com/wanliuno/EIPs/issues/147)
-  ${EnvVarUpdate} $0 "WANLIUNO_SOCKET" "R" "HKLM" "\\.\pipe\geth.ipc"
-  ${EnvVarUpdate} $0 "WANLIUNO_SOCKET" "A" "HKLM" "\\.\pipe\geth.ipc"
+  ${EnvVarUpdate} $0 "ETHEREUM_SOCKET" "R" "HKLM" "\\.\pipe\wanliuno.ipc"
+  ${EnvVarUpdate} $0 "ETHEREUM_SOCKET" "A" "HKLM" "\\.\pipe\wanliuno.ipc"
 
   # Add instdir to PATH
   Push "$INSTDIR"

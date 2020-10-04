@@ -1,7 +1,7 @@
 {
     "randomStatetestDEFAULT-Tue_07_58_41-15153-575192_d0g0v0_Istanbul" : {
         "_info" : {
-            "comment" : "This is a canon example of a test found by fuzzing with EVMlab, demoing how a suicide-created-but-empty account has a non-zero codehash in geth",
+            "comment" : "This is a canon example of a test found by fuzzing with EVMlab, demoing how a suicide-created-but-empty account has a non-zero codehash in wanliuno",
             "filling-rpc-server" : "Geth-1.9.6-unstable-63b18027-20190920",
             "filling-tool-version" : "retesteth-0.0.1+commit.0ae18aef.Linux.g++",
             "lllcversion" : "Version: 0.5.12-develop.2019.9.13+commit.2d601a4f.Linux.g++",

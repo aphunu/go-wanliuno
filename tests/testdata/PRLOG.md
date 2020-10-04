@@ -4,7 +4,7 @@
 upgrade and regenerate invalid RLP blockchain tests
 
 - PR [#672](https://github.com/wanliuno/tests/pull/672)
-Major blockchain test refactoring, and regeneration on geth + retesteth
+Major blockchain test refactoring, and regeneration on wanliuno + retesteth
 
 - PR[#671](https://github.com/wanliuno/tests/pull/671)
 Add test cases for SELFBALANCE inside of CALL, DELEGATECALL, and CALLCODE
@@ -47,4 +47,4 @@ Add tests checking stack validity of SWAP
 Add tests checking DIV/SDIV/MOD/SDIV by zero
 
 - PR [#646](https://github.com/wanliuno/tests/pull/646)
-Add Transition genesis retesteth configurations to defult geth configs
+Add Transition genesis retesteth configurations to defult wanliuno configs

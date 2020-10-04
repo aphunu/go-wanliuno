@@ -132,7 +132,7 @@ func (s *Sync) AddSubTrie(root common.Hash, depth int, parent common.Hash, callb
 		depth:    depth,
 		callback: callback,
 	}
-	// If this sub-trie has a designated parent, link them together
+	// If this sub-trie has a designated parent, link them towanliunoer
 	if parent != (common.Hash{}) {
 		ancestor := s.nodeReqs[parent]
 		if ancestor == nil {
@@ -174,7 +174,7 @@ func (s *Sync) AddCodeEntry(hash common.Hash, depth int, parent common.Hash) {
 		code:  true,
 		depth: depth,
 	}
-	// If this sub-trie has a designated parent, link them together
+	// If this sub-trie has a designated parent, link them towanliunoer
 	if parent != (common.Hash{}) {
 		ancestor := s.nodeReqs[parent] // the parent of codereq can ONLY be nodereq
 		if ancestor == nil {

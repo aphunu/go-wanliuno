@@ -1,4 +1,4 @@
-// Copyright 2016 The go-ethereum Authors
+// Copyright 2016 The go-wanliuno Authors
 // This file is part of the go-wanliuno library.
 //
 // The go-wanliuno library is free software: you can redistribute it and/or modify
@@ -1817,7 +1817,7 @@ func TestJavaBindings(t *testing.T) {
 
 package bindtest;
 
-import org.wanliuno.geth.*;
+import org.wanliuno.wanliuno.*;
 import java.util.*;
 
 public class Test {

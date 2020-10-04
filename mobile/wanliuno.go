@@ -16,7 +16,7 @@
 
 // Contains all the wrappers from the go-wanliuno root package.
 
-package geth
+package wanliuno
 
 import (
 	"errors"

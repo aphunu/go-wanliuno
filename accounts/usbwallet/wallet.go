@@ -60,7 +60,7 @@ type driver interface {
 	// is still online and healthy.
 	Heartbeat() error
 
-	// Derive sends a derivation request to the USB device and returns the Wanliuno
+	// Derive sends a derivation request to the USB device and returns the Ethereum
 	// address located on that path.
 	Derive(path accounts.DerivationPath) (common.Address, error)
 
@@ -346,7 +346,7 @@ func (w *wallet) selfDerive() {
 		)
 		for i := 0; i < len(nextAddrs); i++ {
 			for empty := false; !empty; {
-				// Retrieve the next derived Wanliuno account
+				// Retrieve the next derived Ethereum account
 				if nextAddrs[i] == (common.Address{}) {
 					if nextAddrs[i], err = w.driver.Derive(nextPaths[i]); err != nil {
 						w.log.Warn("USB wallet account derivation failed", "err", err)
@@ -368,18 +368,22 @@ func (w *wallet) selfDerive() {
 					w.log.Warn("USB wallet nonce retrieval failed", "err", err)
 					break
 				}
-				// If the next account is empty, stop self-derivation, but add for the last base path
+				// We've just self-derived a new account, start tracking it locally
+				// unless the account was empty.
+				path := make(accounts.DerivationPath, len(nextPaths[i]))
+				copy(path[:], nextPaths[i][:])
 				if balance.Sign() == 0 && nonce == 0 {
 					empty = true
+					// If it indeed was empty, make a log output for it anyway. In the case
+					// of legacy-ledger, the first account on the legacy-path will
+					// be shown to the user, even if we don't actively track it
 					if i < len(nextAddrs)-1 {
+						w.log.Info("Skipping trakcking first account on legacy path, use personal.deriveAccount(<url>,<path>, false) to track",
+							"path", path, "address", nextAddrs[i])
 						break
 					}
 				}
-				// We've just self-derived a new account, start tracking it locally
-				path := make(accounts.DerivationPath, len(nextPaths[i]))
-				copy(path[:], nextPaths[i][:])
 				paths = append(paths, path)
-
 				account := accounts.Account{
 					Address: nextAddrs[i],
 					URL:     accounts.URL{Scheme: w.url.Scheme, Path: fmt.Sprintf("%s/%s", w.url.Path, path)},
@@ -538,7 +542,7 @@ func (w *wallet) SignText(account accounts.Account, text []byte) ([]byte, error)
 // wallet to request a confirmation from the user. It returns either the signed
 // transaction or a failure if the user denied the transaction.
 //
-// Note, if the version of the Wanliuno application running on the Ledger wallet is
+// Note, if the version of the Ethereum application running on the Ledger wallet is
 // too old to sign EIP-155 transactions, but such is requested nonetheless, an error
 // will be returned opposed to silently signing in Homestead mode.
 func (w *wallet) SignTx(account accounts.Account, tx *types.Transaction, chainID *big.Int) (*types.Transaction, error) {

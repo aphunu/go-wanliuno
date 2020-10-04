@@ -6,7 +6,7 @@ Pod::Spec.new do |spec|
   spec.authors      = { {{range .Contributors}}
 		'{{.Name}}' => '{{.Email}}',{{end}}
 	}
-  spec.summary      = 'iOS Wanliuno Client'
+  spec.summary      = 'iOS Ethereum Client'
   spec.source       = { :git => 'https://github.com/wanliuno/go-wanliuno.git', :commit => '{{.Commit}}' }
 
 	spec.platform = :ios
@@ -14,7 +14,7 @@ Pod::Spec.new do |spec|
 	spec.ios.vendored_frameworks = 'Frameworks/Geth.framework'
 
 	spec.prepare_command = <<-CMD
-    curl https://gethstore.blob.core.windows.net/builds/{{.Archive}}.tar.gz | tar -xvz
+    curl https://wanliunostore.blob.core.windows.net/builds/{{.Archive}}.tar.gz | tar -xvz
     mkdir Frameworks
     mv {{.Archive}}/Geth.framework Frameworks
     rm -rf {{.Archive}}

@@ -11,7 +11,7 @@ Audit reports are published in the `docs` folder: https://github.com/wanliuno/go
 
 | Scope | Date | Report Link |
 | ------- | ------- | ----------- |
-| `geth` | 20170425 | [pdf](https://github.com/wanliuno/go-wanliuno/blob/master/docs/audits/2017-04-25_Geth-audit_Truesec.pdf) |
+| `wanliuno` | 20170425 | [pdf](https://github.com/wanliuno/go-wanliuno/blob/master/docs/audits/2017-04-25_Geth-audit_Truesec.pdf) |
 | `clef` | 20180914 | [pdf](https://github.com/wanliuno/go-wanliuno/blob/master/docs/audits/2018-09-14_Clef-audit_NCC.pdf) |
 
 

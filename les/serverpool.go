@@ -73,7 +73,7 @@ type serverPool struct {
 	timeoutRefreshed mclock.AbsTime
 }
 
-// nodeHistory keeps track of dial costs which determine node weight together with the
+// nodeHistory keeps track of dial costs which determine node weight towanliunoer with the
 // service value calculated by lpc.ValueTracker.
 type nodeHistory struct {
 	dialCost                       utils.ExpiredValue

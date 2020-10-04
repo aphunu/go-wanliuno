@@ -731,7 +731,7 @@ func (f *TxFetcher) rescheduleTimeout(timer *mclock.Timer, trigger chan struct{}
 
 	earliest := now
 	for _, req := range f.requests {
-		// If this request already timed out, skip it altogether
+		// If this request already timed out, skip it altowanliunoer
 		if req.hashes == nil {
 			continue
 		}

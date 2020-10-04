@@ -1,7 +1,7 @@
 {
     "randomStatetestDEFAULT-Tue_07_58_41-15153-575192_d0g0v0" : {
         "_info" : {
-            "comment" : "This is a canon example of a test found by fuzzing with EVMlab, demoing how a suicide-created-but-empty account has a non-zero codehash in geth"
+            "comment" : "This is a canon example of a test found by fuzzing with EVMlab, demoing how a suicide-created-but-empty account has a non-zero codehash in wanliuno"
         },
         "blocks" : [
             {

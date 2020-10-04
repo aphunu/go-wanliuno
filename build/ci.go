@@ -64,22 +64,21 @@ import (
 )
 
 var (
-	// Files that end up in the geth*.zip archive.
-	gethArchiveFiles = []string{
+	// Files that end up in the wanliuno*.zip archive.
+	wanliunoArchiveFiles = []string{
 		"COPYING",
-		executablePath("geth"),
+		executablePath("wanliuno"),
 	}
 
-	// Files that end up in the geth-alltools*.zip archive.
+	// Files that end up in the wanliuno-alltools*.zip archive.
 	allToolsArchiveFiles = []string{
 		"COPYING",
 		executablePath("abigen"),
 		executablePath("bootnode"),
 		executablePath("evm"),
-		executablePath("geth"),
+		executablePath("wanliuno"),
 		executablePath("puppeth"),
 		executablePath("rlpdump"),
-		executablePath("wnode"),
 		executablePath("clef"),
 	}
 
@@ -87,41 +86,37 @@ var (
 	debExecutables = []debExecutable{
 		{
 			BinaryName:  "abigen",
-			Description: "Source code generator to convert Wanliuno contract definitions into easy to use, compile-time type-safe Go packages.",
+			Description: "Source code generator to convert Ethereum contract definitions into easy to use, compile-time type-safe Go packages.",
 		},
 		{
 			BinaryName:  "bootnode",
-			Description: "Wanliuno bootnode.",
+			Description: "Ethereum bootnode.",
 		},
 		{
 			BinaryName:  "evm",
-			Description: "Developer utility version of the EVM (Wanliuno Virtual Machine) that is capable of running bytecode snippets within a configurable environment and execution mode.",
+			Description: "Developer utility version of the EVM (Ethereum Virtual Machine) that is capable of running bytecode snippets within a configurable environment and execution mode.",
 		},
 		{
-			BinaryName:  "geth",
-			Description: "Wanliuno CLI client.",
+			BinaryName:  "wanliuno",
+			Description: "Ethereum CLI client.",
 		},
 		{
 			BinaryName:  "puppeth",
-			Description: "Wanliuno private network manager.",
+			Description: "Ethereum private network manager.",
 		},
 		{
 			BinaryName:  "rlpdump",
 			Description: "Developer utility tool that prints RLP structures.",
 		},
 		{
-			BinaryName:  "wnode",
-			Description: "Wanliuno Whisper diagnostic tool",
-		},
-		{
 			BinaryName:  "clef",
-			Description: "Wanliuno account management tool.",
+			Description: "Ethereum account management tool.",
 		},
 	}
 
 	// A debian package is created for all executables listed here.
 
-	debWanliuno = debPackage{
+	debEthereum = debPackage{
 		Name:        "wanliuno",
 		Version:     params.Version,
 		Executables: debExecutables,
@@ -129,7 +124,7 @@ var (
 
 	// Debian meta packages to build and push to Ubuntu PPA
 	debPackages = []debPackage{
-		debWanliuno,
+		debEthereum,
 	}
 
 	// Distros for which packages are created.
@@ -380,7 +375,7 @@ func doArchive(cmdline []string) {
 		arch   = flag.String("arch", runtime.GOARCH, "Architecture cross packaging")
 		atype  = flag.String("type", "zip", "Type of archive to write (zip|tar)")
 		signer = flag.String("signer", "", `Environment variable holding the signing key (e.g. LINUX_SIGNING_KEY)`)
-		upload = flag.String("upload", "", `Destination to upload the archives (usually "gethstore/builds")`)
+		upload = flag.String("upload", "", `Destination to upload the archives (usually "wanliunostore/builds")`)
 		ext    string
 	)
 	flag.CommandLine.Parse(cmdline)
@@ -396,18 +391,18 @@ func doArchive(cmdline []string) {
 	var (
 		env = build.Env()
 
-		basegeth = archiveBasename(*arch, params.ArchiveVersion(env.Commit))
-		geth     = "geth-" + basegeth + ext
-		alltools = "geth-alltools-" + basegeth + ext
+		basewanliuno = archiveBasename(*arch, params.ArchiveVersion(env.Commit))
+		wanliuno     = "wanliuno-" + basewanliuno + ext
+		alltools = "wanliuno-alltools-" + basewanliuno + ext
 	)
 	maybeSkipArchive(env)
-	if err := build.WriteArchive(geth, gethArchiveFiles); err != nil {
+	if err := build.WriteArchive(wanliuno, wanliunoArchiveFiles); err != nil {
 		log.Fatal(err)
 	}
 	if err := build.WriteArchive(alltools, allToolsArchiveFiles); err != nil {
 		log.Fatal(err)
 	}
-	for _, archive := range []string{geth, alltools} {
+	for _, archive := range []string{wanliuno, alltools} {
 		if err := archiveUpload(archive, *upload, *signer); err != nil {
 			log.Fatal(err)
 		}
@@ -478,7 +473,7 @@ func doDebianSource(cmdline []string) {
 		cachedir  = flag.String("cachedir", "./build/cache", `Filesystem path to cache the downloaded Go bundles at`)
 		signer    = flag.String("signer", "", `Signing key name, also used as package author`)
 		upload    = flag.String("upload", "", `Where to upload the source package (usually "wanliuno/wanliuno")`)
-		sshUser   = flag.String("sftp-user", "", `Username for SFTP upload (usually "geth-ci")`)
+		sshUser   = flag.String("sftp-user", "", `Username for SFTP upload (usually "wanliuno-ci")`)
 		workdir   = flag.String("workdir", "", `Output directory for packages (uses temp dir if unset)`)
 		now       = time.Now()
 	)
@@ -594,7 +589,7 @@ func makeWorkdir(wdflag string) string {
 	if wdflag != "" {
 		err = os.MkdirAll(wdflag, 0744)
 	} else {
-		wdflag, err = ioutil.TempDir("", "geth-build-")
+		wdflag, err = ioutil.TempDir("", "wanliuno-build-")
 	}
 	if err != nil {
 		log.Fatal(err)
@@ -650,7 +645,7 @@ func (d debExecutable) Package() string {
 func newDebMetadata(distro, goboot, author string, env build.Environment, t time.Time, name string, version string, exes []debExecutable) debMetadata {
 	if author == "" {
 		// No signing key, use default author.
-		author = "Wanliuno Builds <fjl@wanliuno.org>"
+		author = "Ethereum Builds <fjl@wanliuno.org>"
 	}
 	return debMetadata{
 		GoBootPackage: goboot,
@@ -752,7 +747,7 @@ func doWindowsInstaller(cmdline []string) {
 	var (
 		arch    = flag.String("arch", runtime.GOARCH, "Architecture for cross build packaging")
 		signer  = flag.String("signer", "", `Environment variable holding the signing key (e.g. WINDOWS_SIGNING_KEY)`)
-		upload  = flag.String("upload", "", `Destination to upload the archives (usually "gethstore/builds")`)
+		upload  = flag.String("upload", "", `Destination to upload the archives (usually "wanliunostore/builds")`)
 		workdir = flag.String("workdir", "", `Output directory for packages (uses temp dir if unset)`)
 	)
 	flag.CommandLine.Parse(cmdline)
@@ -764,28 +759,28 @@ func doWindowsInstaller(cmdline []string) {
 	var (
 		devTools []string
 		allTools []string
-		gethTool string
+		wanliunoTool string
 	)
 	for _, file := range allToolsArchiveFiles {
 		if file == "COPYING" { // license, copied later
 			continue
 		}
 		allTools = append(allTools, filepath.Base(file))
-		if filepath.Base(file) == "geth.exe" {
-			gethTool = file
+		if filepath.Base(file) == "wanliuno.exe" {
+			wanliunoTool = file
 		} else {
 			devTools = append(devTools, file)
 		}
 	}
 
 	// Render NSIS scripts: Installer NSIS contains two installer sections,
-	// first section contains the geth binary, second section holds the dev tools.
+	// first section contains the wanliuno binary, second section holds the dev tools.
 	templateData := map[string]interface{}{
 		"License":  "COPYING",
-		"Geth":     gethTool,
+		"Geth":     wanliunoTool,
 		"DevTools": devTools,
 	}
-	build.Render("build/nsis.geth.nsi", filepath.Join(*workdir, "geth.nsi"), 0644, nil)
+	build.Render("build/nsis.wanliuno.nsi", filepath.Join(*workdir, "wanliuno.nsi"), 0644, nil)
 	build.Render("build/nsis.install.nsh", filepath.Join(*workdir, "install.nsh"), 0644, templateData)
 	build.Render("build/nsis.uninstall.nsh", filepath.Join(*workdir, "uninstall.nsh"), 0644, allTools)
 	build.Render("build/nsis.pathupdate.nsh", filepath.Join(*workdir, "PathUpdate.nsh"), 0644, nil)
@@ -803,14 +798,14 @@ func doWindowsInstaller(cmdline []string) {
 	if env.Commit != "" {
 		version[2] += "-" + env.Commit[:8]
 	}
-	installer, _ := filepath.Abs("geth-" + archiveBasename(*arch, params.ArchiveVersion(env.Commit)) + ".exe")
+	installer, _ := filepath.Abs("wanliuno-" + archiveBasename(*arch, params.ArchiveVersion(env.Commit)) + ".exe")
 	build.MustRunCommand("makensis.exe",
 		"/DOUTPUTFILE="+installer,
 		"/DMAJORVERSION="+version[0],
 		"/DMINORVERSION="+version[1],
 		"/DBUILDVERSION="+version[2],
 		"/DARCH="+*arch,
-		filepath.Join(*workdir, "geth.nsi"),
+		filepath.Join(*workdir, "wanliuno.nsi"),
 	)
 	// Sign and publish installer.
 	if err := archiveUpload(installer, *upload, *signer); err != nil {
@@ -825,7 +820,7 @@ func doAndroidArchive(cmdline []string) {
 		local  = flag.Bool("local", false, `Flag whether we're only doing a local build (skip Maven artifacts)`)
 		signer = flag.String("signer", "", `Environment variable holding the signing key (e.g. ANDROID_SIGNING_KEY)`)
 		deploy = flag.String("deploy", "", `Destination to deploy the archive (usually "https://oss.sonatype.org")`)
-		upload = flag.String("upload", "", `Destination to upload the archive (usually "gethstore/builds")`)
+		upload = flag.String("upload", "", `Destination to upload the archive (usually "wanliunostore/builds")`)
 	)
 	flag.CommandLine.Parse(cmdline)
 	env := build.Env()
@@ -840,7 +835,8 @@ func doAndroidArchive(cmdline []string) {
 
 	if *local {
 		// If we're building locally, copy bundle to build dir and skip Maven
-		os.Rename("geth.aar", filepath.Join(GOBIN, "geth.aar"))
+		os.Rename("wanliuno.aar", filepath.Join(GOBIN, "wanliuno.aar"))
+		os.Rename("wanliuno-sources.jar", filepath.Join(GOBIN, "wanliuno-sources.jar"))
 		return
 	}
 	meta := newMavenMetadata(env)
@@ -850,8 +846,8 @@ func doAndroidArchive(cmdline []string) {
 	maybeSkipArchive(env)
 
 	// Sign and upload the archive to Azure
-	archive := "geth-" + archiveBasename("android", params.ArchiveVersion(env.Commit)) + ".aar"
-	os.Rename("geth.aar", archive)
+	archive := "wanliuno-" + archiveBasename("android", params.ArchiveVersion(env.Commit)) + ".aar"
+	os.Rename("wanliuno.aar", archive)
 
 	if err := archiveUpload(archive, *upload, *signer); err != nil {
 		log.Fatal(err)
@@ -936,7 +932,7 @@ func newMavenMetadata(env build.Environment) mavenMetadata {
 	}
 	return mavenMetadata{
 		Version:      version,
-		Package:      "geth-" + version,
+		Package:      "wanliuno-" + version,
 		Develop:      isUnstableBuild(env),
 		Contributors: contribs,
 	}
@@ -949,7 +945,7 @@ func doXCodeFramework(cmdline []string) {
 		local  = flag.Bool("local", false, `Flag whether we're only doing a local build (skip Maven artifacts)`)
 		signer = flag.String("signer", "", `Environment variable holding the signing key (e.g. IOS_SIGNING_KEY)`)
 		deploy = flag.String("deploy", "", `Destination to deploy the archive (usually "trunk")`)
-		upload = flag.String("upload", "", `Destination to upload the archives (usually "gethstore/builds")`)
+		upload = flag.String("upload", "", `Destination to upload the archives (usually "wanliunostore/builds")`)
 	)
 	flag.CommandLine.Parse(cmdline)
 	env := build.Env()
@@ -965,7 +961,7 @@ func doXCodeFramework(cmdline []string) {
 		build.MustRun(bind)
 		return
 	}
-	archive := "geth-" + archiveBasename("ios", params.ArchiveVersion(env.Commit))
+	archive := "wanliuno-" + archiveBasename("ios", params.ArchiveVersion(env.Commit))
 	if err := os.Mkdir(archive, os.ModePerm); err != nil {
 		log.Fatal(err)
 	}
@@ -1083,7 +1079,7 @@ func xgoTool(args []string) *exec.Cmd {
 
 func doPurge(cmdline []string) {
 	var (
-		store = flag.String("store", "", `Destination from where to purge archives (usually "gethstore/builds")`)
+		store = flag.String("store", "", `Destination from where to purge archives (usually "wanliunostore/builds")`)
 		limit = flag.Int("days", 30, `Age threshold above which to delete unstable archives`)
 	)
 	flag.CommandLine.Parse(cmdline)

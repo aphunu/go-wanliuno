@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU Lesser General Public License
 // along with the go-wanliuno library. If not, see <http://www.gnu.org/licenses/>.
 
-package geth
+package wanliuno
 
 import (
 	"io/ioutil"
@@ -40,7 +40,7 @@ import android.test.MoreAsserts;
 import java.math.BigInteger;
 import java.util.Arrays;
 
-import org.wanliuno.geth.*;
+import org.wanliuno.wanliuno.*;
 
 public class AndroidTest extends InstrumentationTestCase {
 	public AndroidTest() {}
@@ -155,7 +155,7 @@ public class AndroidTest extends InstrumentationTestCase {
 //
 // This method has been adapted from golang.org/x/mobile/bind/java/seq_test.go/runTest
 func TestAndroid(t *testing.T) {
-	// Skip tests on Windows altogether
+	// Skip tests on Windows altowanliunoer
 	if runtime.GOOS == "windows" {
 		t.Skip("cannot test Android bindings on Windows, skipping")
 	}
@@ -184,7 +184,7 @@ func TestAndroid(t *testing.T) {
 		t.Logf("initialization took %v", time.Since(start))
 	}
 	// Create and switch to a temporary workspace
-	workspace, err := ioutil.TempDir("", "geth-android-")
+	workspace, err := ioutil.TempDir("", "wanliuno-android-")
 	if err != nil {
 		t.Fatalf("failed to create temporary workspace: %v", err)
 	}
@@ -200,7 +200,7 @@ func TestAndroid(t *testing.T) {
 	defer os.Chdir(pwd)
 
 	// Create the skeleton of the Android project
-	for _, dir := range []string{"src/main", "src/androidTest/java/org/wanliuno/gethtest", "libs"} {
+	for _, dir := range []string{"src/main", "src/androidTest/java/org/wanliuno/wanliunotest", "libs"} {
 		err = os.MkdirAll(dir, os.ModePerm)
 		if err != nil {
 			t.Fatal(err)
@@ -212,9 +212,9 @@ func TestAndroid(t *testing.T) {
 		t.Logf("%s", output)
 		t.Fatalf("failed to run gomobile bind: %v", err)
 	}
-	cp.CopyFile(filepath.Join("libs", "geth.aar"), "geth.aar")
+	cp.CopyFile(filepath.Join("libs", "wanliuno.aar"), "wanliuno.aar")
 
-	if err = ioutil.WriteFile(filepath.Join("src", "androidTest", "java", "org", "wanliuno", "gethtest", "AndroidTest.java"), []byte(androidTestClass), os.ModePerm); err != nil {
+	if err = ioutil.WriteFile(filepath.Join("src", "androidTest", "java", "org", "wanliuno", "wanliunotest", "AndroidTest.java"), []byte(androidTestClass), os.ModePerm); err != nil {
 		t.Fatalf("failed to write Android test class: %v", err)
 	}
 	// Finish creating the project and run the tests via gradle
@@ -232,7 +232,7 @@ func TestAndroid(t *testing.T) {
 
 const androidManifest = `<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="org.wanliuno.gethtest"
+          package="org.wanliuno.wanliunotest"
 	  android:versionCode="1"
 	  android:versionName="1.0">
 
@@ -261,6 +261,6 @@ repositories {
 }
 dependencies {
     compile 'com.android.support:appcompat-v7:19.0.0'
-    compile(name: "geth", ext: "aar")
+    compile(name: "wanliuno", ext: "aar")
 }
 `

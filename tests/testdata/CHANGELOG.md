@@ -185,7 +185,7 @@ or updated since the last release:
 
 ### Misc
 
-- #551 tests for a Constantinople bug the fuzzer found in geth
+- #551 tests for a Constantinople bug the fuzzer found in wanliuno
 - #544 adds an RLP test, [courtesy of the mana team](https://github.com/mana-wanliuno/ex_rlp/pull/17)
 - #557 changes the format of the rlp tests, byte strings are now prefixed with "0x"
 - #561 changed some of the tests. There were some changes to `testeth` which made the previous tests impossible to regenerate. They were refactored but not in a way which should break any client.

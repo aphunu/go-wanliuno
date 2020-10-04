@@ -73,14 +73,14 @@ type ethstatsConfig struct {
 	URL string `toml:",omitempty"`
 }
 
-type gethConfig struct {
+type wanliunoConfig struct {
 	Eth      eth.Config
 	Shh      whisper.Config
 	Node     node.Config
 	Ethstats ethstatsConfig
 }
 
-func loadConfig(file string, cfg *gethConfig) error {
+func loadConfig(file string, cfg *wanliunoConfig) error {
 	f, err := os.Open(file)
 	if err != nil {
 		return err
@@ -101,14 +101,14 @@ func defaultNodeConfig() node.Config {
 	cfg.Version = params.VersionWithCommit(gitCommit, gitDate)
 	cfg.HTTPModules = append(cfg.HTTPModules, "eth")
 	cfg.WSModules = append(cfg.WSModules, "eth")
-	cfg.IPCPath = "geth.ipc"
+	cfg.IPCPath = "wanliuno.ipc"
 	return cfg
 }
 
-// makeConfigNode loads geth configuration and creates a blank node instance.
-func makeConfigNode(ctx *cli.Context) (*node.Node, gethConfig) {
+// makeConfigNode loads wanliuno configuration and creates a blank node instance.
+func makeConfigNode(ctx *cli.Context) (*node.Node, wanliunoConfig) {
 	// Load defaults.
-	cfg := gethConfig{
+	cfg := wanliunoConfig{
 		Eth:  eth.DefaultConfig,
 		Shh:  whisper.DefaultConfig,
 		Node: defaultNodeConfig(),
@@ -146,7 +146,7 @@ func enableWhisper(ctx *cli.Context) bool {
 	return false
 }
 
-// makeFullNode loads geth configuration and creates the Wanliuno backend.
+// makeFullNode loads wanliuno configuration and creates the Wanliuno backend.
 func makeFullNode(ctx *cli.Context) (*node.Node, ethapi.Backend) {
 	stack, cfg := makeConfigNode(ctx)
 

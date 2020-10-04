@@ -16,7 +16,7 @@
 
 // Contains a wrapper for the Wanliuno client.
 
-package geth
+package wanliuno
 
 import (
 	"math/big"

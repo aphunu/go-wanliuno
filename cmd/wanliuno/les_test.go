@@ -10,31 +10,31 @@ import (
 	"github.com/wanliuno/go-wanliuno/rpc"
 )
 
-type gethrpc struct {
+type wanliunorpc struct {
 	name     string
 	rpc      *rpc.Client
-	geth     *testgeth
+	wanliuno     *testwanliuno
 	nodeInfo *p2p.NodeInfo
 }
 
-func (g *gethrpc) killAndWait() {
-	g.geth.Kill()
-	g.geth.WaitExit()
+func (g *wanliunorpc) killAndWait() {
+	g.wanliuno.Kill()
+	g.wanliuno.WaitExit()
 }
 
-func (g *gethrpc) callRPC(result interface{}, method string, args ...interface{}) {
+func (g *wanliunorpc) callRPC(result interface{}, method string, args ...interface{}) {
 	if err := g.rpc.Call(&result, method, args...); err != nil {
-		g.geth.Fatalf("callRPC %v: %v", method, err)
+		g.wanliuno.Fatalf("callRPC %v: %v", method, err)
 	}
 }
 
-func (g *gethrpc) addPeer(peer *gethrpc) {
-	g.geth.Logf("%v.addPeer(%v)", g.name, peer.name)
+func (g *wanliunorpc) addPeer(peer *wanliunorpc) {
+	g.wanliuno.Logf("%v.addPeer(%v)", g.name, peer.name)
 	enode := peer.getNodeInfo().Enode
 	peerCh := make(chan *p2p.PeerEvent)
 	sub, err := g.rpc.Subscribe(context.Background(), "admin", peerCh, "peerEvents")
 	if err != nil {
-		g.geth.Fatalf("subscribe %v: %v", g.name, err)
+		g.wanliuno.Fatalf("subscribe %v: %v", g.name, err)
 	}
 	defer sub.Unsubscribe()
 	g.callRPC(nil, "admin_addPeer", enode)
@@ -42,16 +42,16 @@ func (g *gethrpc) addPeer(peer *gethrpc) {
 	timeout := time.After(dur)
 	select {
 	case ev := <-peerCh:
-		g.geth.Logf("%v received event: type=%v, peer=%v", g.name, ev.Type, ev.Peer)
+		g.wanliuno.Logf("%v received event: type=%v, peer=%v", g.name, ev.Type, ev.Peer)
 	case err := <-sub.Err():
-		g.geth.Fatalf("%v sub error: %v", g.name, err)
+		g.wanliuno.Fatalf("%v sub error: %v", g.name, err)
 	case <-timeout:
-		g.geth.Error("timeout adding peer after", dur)
+		g.wanliuno.Error("timeout adding peer after", dur)
 	}
 }
 
 // Use this function instead of `g.nodeInfo` directly
-func (g *gethrpc) getNodeInfo() *p2p.NodeInfo {
+func (g *wanliunorpc) getNodeInfo() *p2p.NodeInfo {
 	if g.nodeInfo != nil {
 		return g.nodeInfo
 	}
@@ -60,13 +60,13 @@ func (g *gethrpc) getNodeInfo() *p2p.NodeInfo {
 	return g.nodeInfo
 }
 
-func (g *gethrpc) waitSynced() {
+func (g *wanliunorpc) waitSynced() {
 	// Check if it's synced now
 	var result interface{}
 	g.callRPC(&result, "eth_syncing")
 	syncing, ok := result.(bool)
 	if ok && !syncing {
-		g.geth.Logf("%v already synced", g.name)
+		g.wanliuno.Logf("%v already synced", g.name)
 		return
 	}
 
@@ -74,36 +74,36 @@ func (g *gethrpc) waitSynced() {
 	ch := make(chan interface{})
 	sub, err := g.rpc.Subscribe(context.Background(), "eth", ch, "syncing")
 	if err != nil {
-		g.geth.Fatalf("%v syncing: %v", g.name, err)
+		g.wanliuno.Fatalf("%v syncing: %v", g.name, err)
 	}
 	defer sub.Unsubscribe()
 	timeout := time.After(4 * time.Second)
 	select {
 	case ev := <-ch:
-		g.geth.Log("'syncing' event", ev)
+		g.wanliuno.Log("'syncing' event", ev)
 		syncing, ok := ev.(bool)
 		if ok && !syncing {
 			break
 		}
-		g.geth.Log("Other 'syncing' event", ev)
+		g.wanliuno.Log("Other 'syncing' event", ev)
 	case err := <-sub.Err():
-		g.geth.Fatalf("%v notification: %v", g.name, err)
+		g.wanliuno.Fatalf("%v notification: %v", g.name, err)
 		break
 	case <-timeout:
-		g.geth.Fatalf("%v timeout syncing", g.name)
+		g.wanliuno.Fatalf("%v timeout syncing", g.name)
 		break
 	}
 }
 
-func startGethWithIpc(t *testing.T, name string, args ...string) *gethrpc {
-	g := &gethrpc{name: name}
+func startGethWithIpc(t *testing.T, name string, args ...string) *wanliunorpc {
+	g := &wanliunorpc{name: name}
 	args = append([]string{"--networkid=42", "--port=0", "--nousb"}, args...)
 	t.Logf("Starting %v with rpc: %v", name, args)
-	g.geth = runGeth(t, args...)
+	g.wanliuno = runGeth(t, args...)
 	// wait before we can attach to it. TODO: probe for it properly
 	time.Sleep(1 * time.Second)
 	var err error
-	ipcpath := filepath.Join(g.geth.Datadir, "geth.ipc")
+	ipcpath := filepath.Join(g.wanliuno.Datadir, "wanliuno.ipc")
 	g.rpc, err = rpc.Dial(ipcpath)
 	if err != nil {
 		t.Fatalf("%v rpc connect: %v", name, err)
@@ -118,7 +118,7 @@ func initGeth(t *testing.T) string {
 	return datadir
 }
 
-func startLightServer(t *testing.T) *gethrpc {
+func startLightServer(t *testing.T) *wanliunorpc {
 	datadir := initGeth(t)
 	runGeth(t, "--nousb", "--datadir", datadir, "--password", "./testdata/password.txt", "account", "import", "./testdata/key.prv").WaitExit()
 	account := "0x02f0d131f1f97aef08aec6e3291b957d9efe7105"
@@ -126,7 +126,7 @@ func startLightServer(t *testing.T) *gethrpc {
 	return server
 }
 
-func startClient(t *testing.T, name string) *gethrpc {
+func startClient(t *testing.T, name string) *wanliunorpc {
 	datadir := initGeth(t)
 	return startGethWithIpc(t, name, "--datadir", datadir, "--nodiscover", "--syncmode=light", "--nat=extip:127.0.0.1")
 }
@@ -161,7 +161,7 @@ func TestPriorityClient(t *testing.T) {
 		t.Errorf("Expected: # of prio peers == 1, actual: %v", len(peers))
 	}
 
-	nodes := map[string]*gethrpc{
+	nodes := map[string]*wanliunorpc{
 		lightServer.getNodeInfo().ID: lightServer,
 		freeCli.getNodeInfo().ID:     freeCli,
 		prioCli.getNodeInfo().ID:     prioCli,

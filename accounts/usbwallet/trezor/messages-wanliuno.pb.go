@@ -24,9 +24,9 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 //*
 // Request: Ask device for public key corresponding to address_n path
 // @start
-// @next WanliunoPublicKey
+// @next EthereumPublicKey
 // @next Failure
-type WanliunoGetPublicKey struct {
+type EthereumGetPublicKey struct {
 	AddressN             []uint32 `protobuf:"varint,1,rep,name=address_n,json=addressN" json:"address_n,omitempty"`
 	ShowDisplay          *bool    `protobuf:"varint,2,opt,name=show_display,json=showDisplay" json:"show_display,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -34,39 +34,39 @@ type WanliunoGetPublicKey struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *WanliunoGetPublicKey) Reset()         { *m = WanliunoGetPublicKey{} }
-func (m *WanliunoGetPublicKey) String() string { return proto.CompactTextString(m) }
-func (*WanliunoGetPublicKey) ProtoMessage()    {}
-func (*WanliunoGetPublicKey) Descriptor() ([]byte, []int) {
+func (m *EthereumGetPublicKey) Reset()         { *m = EthereumGetPublicKey{} }
+func (m *EthereumGetPublicKey) String() string { return proto.CompactTextString(m) }
+func (*EthereumGetPublicKey) ProtoMessage()    {}
+func (*EthereumGetPublicKey) Descriptor() ([]byte, []int) {
 	return fileDescriptor_cb33f46ba915f15c, []int{0}
 }
 
-func (m *WanliunoGetPublicKey) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_WanliunoGetPublicKey.Unmarshal(m, b)
+func (m *EthereumGetPublicKey) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_EthereumGetPublicKey.Unmarshal(m, b)
 }
-func (m *WanliunoGetPublicKey) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_WanliunoGetPublicKey.Marshal(b, m, deterministic)
+func (m *EthereumGetPublicKey) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_EthereumGetPublicKey.Marshal(b, m, deterministic)
 }
-func (m *WanliunoGetPublicKey) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_WanliunoGetPublicKey.Merge(m, src)
+func (m *EthereumGetPublicKey) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EthereumGetPublicKey.Merge(m, src)
 }
-func (m *WanliunoGetPublicKey) XXX_Size() int {
-	return xxx_messageInfo_WanliunoGetPublicKey.Size(m)
+func (m *EthereumGetPublicKey) XXX_Size() int {
+	return xxx_messageInfo_EthereumGetPublicKey.Size(m)
 }
-func (m *WanliunoGetPublicKey) XXX_DiscardUnknown() {
-	xxx_messageInfo_WanliunoGetPublicKey.DiscardUnknown(m)
+func (m *EthereumGetPublicKey) XXX_DiscardUnknown() {
+	xxx_messageInfo_EthereumGetPublicKey.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_WanliunoGetPublicKey proto.InternalMessageInfo
+var xxx_messageInfo_EthereumGetPublicKey proto.InternalMessageInfo
 
-func (m *WanliunoGetPublicKey) GetAddressN() []uint32 {
+func (m *EthereumGetPublicKey) GetAddressN() []uint32 {
 	if m != nil {
 		return m.AddressN
 	}
 	return nil
 }
 
-func (m *WanliunoGetPublicKey) GetShowDisplay() bool {
+func (m *EthereumGetPublicKey) GetShowDisplay() bool {
 	if m != nil && m.ShowDisplay != nil {
 		return *m.ShowDisplay
 	}
@@ -76,7 +76,7 @@ func (m *WanliunoGetPublicKey) GetShowDisplay() bool {
 //*
 // Response: Contains public key derived from device private seed
 // @end
-type WanliunoPublicKey struct {
+type EthereumPublicKey struct {
 	Node                 *HDNodeType `protobuf:"bytes,1,opt,name=node" json:"node,omitempty"`
 	Xpub                 *string     `protobuf:"bytes,2,opt,name=xpub" json:"xpub,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
@@ -84,39 +84,39 @@ type WanliunoPublicKey struct {
 	XXX_sizecache        int32       `json:"-"`
 }
 
-func (m *WanliunoPublicKey) Reset()         { *m = WanliunoPublicKey{} }
-func (m *WanliunoPublicKey) String() string { return proto.CompactTextString(m) }
-func (*WanliunoPublicKey) ProtoMessage()    {}
-func (*WanliunoPublicKey) Descriptor() ([]byte, []int) {
+func (m *EthereumPublicKey) Reset()         { *m = EthereumPublicKey{} }
+func (m *EthereumPublicKey) String() string { return proto.CompactTextString(m) }
+func (*EthereumPublicKey) ProtoMessage()    {}
+func (*EthereumPublicKey) Descriptor() ([]byte, []int) {
 	return fileDescriptor_cb33f46ba915f15c, []int{1}
 }
 
-func (m *WanliunoPublicKey) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_WanliunoPublicKey.Unmarshal(m, b)
+func (m *EthereumPublicKey) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_EthereumPublicKey.Unmarshal(m, b)
 }
-func (m *WanliunoPublicKey) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_WanliunoPublicKey.Marshal(b, m, deterministic)
+func (m *EthereumPublicKey) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_EthereumPublicKey.Marshal(b, m, deterministic)
 }
-func (m *WanliunoPublicKey) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_WanliunoPublicKey.Merge(m, src)
+func (m *EthereumPublicKey) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EthereumPublicKey.Merge(m, src)
 }
-func (m *WanliunoPublicKey) XXX_Size() int {
-	return xxx_messageInfo_WanliunoPublicKey.Size(m)
+func (m *EthereumPublicKey) XXX_Size() int {
+	return xxx_messageInfo_EthereumPublicKey.Size(m)
 }
-func (m *WanliunoPublicKey) XXX_DiscardUnknown() {
-	xxx_messageInfo_WanliunoPublicKey.DiscardUnknown(m)
+func (m *EthereumPublicKey) XXX_DiscardUnknown() {
+	xxx_messageInfo_EthereumPublicKey.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_WanliunoPublicKey proto.InternalMessageInfo
+var xxx_messageInfo_EthereumPublicKey proto.InternalMessageInfo
 
-func (m *WanliunoPublicKey) GetNode() *HDNodeType {
+func (m *EthereumPublicKey) GetNode() *HDNodeType {
 	if m != nil {
 		return m.Node
 	}
 	return nil
 }
 
-func (m *WanliunoPublicKey) GetXpub() string {
+func (m *EthereumPublicKey) GetXpub() string {
 	if m != nil && m.Xpub != nil {
 		return *m.Xpub
 	}
@@ -124,11 +124,11 @@ func (m *WanliunoPublicKey) GetXpub() string {
 }
 
 //*
-// Request: Ask device for Wanliuno address corresponding to address_n path
+// Request: Ask device for Ethereum address corresponding to address_n path
 // @start
-// @next WanliunoAddress
+// @next EthereumAddress
 // @next Failure
-type WanliunoGetAddress struct {
+type EthereumGetAddress struct {
 	AddressN             []uint32 `protobuf:"varint,1,rep,name=address_n,json=addressN" json:"address_n,omitempty"`
 	ShowDisplay          *bool    `protobuf:"varint,2,opt,name=show_display,json=showDisplay" json:"show_display,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -136,39 +136,39 @@ type WanliunoGetAddress struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *WanliunoGetAddress) Reset()         { *m = WanliunoGetAddress{} }
-func (m *WanliunoGetAddress) String() string { return proto.CompactTextString(m) }
-func (*WanliunoGetAddress) ProtoMessage()    {}
-func (*WanliunoGetAddress) Descriptor() ([]byte, []int) {
+func (m *EthereumGetAddress) Reset()         { *m = EthereumGetAddress{} }
+func (m *EthereumGetAddress) String() string { return proto.CompactTextString(m) }
+func (*EthereumGetAddress) ProtoMessage()    {}
+func (*EthereumGetAddress) Descriptor() ([]byte, []int) {
 	return fileDescriptor_cb33f46ba915f15c, []int{2}
 }
 
-func (m *WanliunoGetAddress) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_WanliunoGetAddress.Unmarshal(m, b)
+func (m *EthereumGetAddress) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_EthereumGetAddress.Unmarshal(m, b)
 }
-func (m *WanliunoGetAddress) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_WanliunoGetAddress.Marshal(b, m, deterministic)
+func (m *EthereumGetAddress) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_EthereumGetAddress.Marshal(b, m, deterministic)
 }
-func (m *WanliunoGetAddress) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_WanliunoGetAddress.Merge(m, src)
+func (m *EthereumGetAddress) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EthereumGetAddress.Merge(m, src)
 }
-func (m *WanliunoGetAddress) XXX_Size() int {
-	return xxx_messageInfo_WanliunoGetAddress.Size(m)
+func (m *EthereumGetAddress) XXX_Size() int {
+	return xxx_messageInfo_EthereumGetAddress.Size(m)
 }
-func (m *WanliunoGetAddress) XXX_DiscardUnknown() {
-	xxx_messageInfo_WanliunoGetAddress.DiscardUnknown(m)
+func (m *EthereumGetAddress) XXX_DiscardUnknown() {
+	xxx_messageInfo_EthereumGetAddress.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_WanliunoGetAddress proto.InternalMessageInfo
+var xxx_messageInfo_EthereumGetAddress proto.InternalMessageInfo
 
-func (m *WanliunoGetAddress) GetAddressN() []uint32 {
+func (m *EthereumGetAddress) GetAddressN() []uint32 {
 	if m != nil {
 		return m.AddressN
 	}
 	return nil
 }
 
-func (m *WanliunoGetAddress) GetShowDisplay() bool {
+func (m *EthereumGetAddress) GetShowDisplay() bool {
 	if m != nil && m.ShowDisplay != nil {
 		return *m.ShowDisplay
 	}
@@ -176,9 +176,9 @@ func (m *WanliunoGetAddress) GetShowDisplay() bool {
 }
 
 //*
-// Response: Contains an Wanliuno address derived from device private seed
+// Response: Contains an Ethereum address derived from device private seed
 // @end
-type WanliunoAddress struct {
+type EthereumAddress struct {
 	AddressBin           []byte   `protobuf:"bytes,1,opt,name=addressBin" json:"addressBin,omitempty"`
 	AddressHex           *string  `protobuf:"bytes,2,opt,name=addressHex" json:"addressHex,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -186,39 +186,39 @@ type WanliunoAddress struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *WanliunoAddress) Reset()         { *m = WanliunoAddress{} }
-func (m *WanliunoAddress) String() string { return proto.CompactTextString(m) }
-func (*WanliunoAddress) ProtoMessage()    {}
-func (*WanliunoAddress) Descriptor() ([]byte, []int) {
+func (m *EthereumAddress) Reset()         { *m = EthereumAddress{} }
+func (m *EthereumAddress) String() string { return proto.CompactTextString(m) }
+func (*EthereumAddress) ProtoMessage()    {}
+func (*EthereumAddress) Descriptor() ([]byte, []int) {
 	return fileDescriptor_cb33f46ba915f15c, []int{3}
 }
 
-func (m *WanliunoAddress) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_WanliunoAddress.Unmarshal(m, b)
+func (m *EthereumAddress) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_EthereumAddress.Unmarshal(m, b)
 }
-func (m *WanliunoAddress) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_WanliunoAddress.Marshal(b, m, deterministic)
+func (m *EthereumAddress) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_EthereumAddress.Marshal(b, m, deterministic)
 }
-func (m *WanliunoAddress) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_WanliunoAddress.Merge(m, src)
+func (m *EthereumAddress) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EthereumAddress.Merge(m, src)
 }
-func (m *WanliunoAddress) XXX_Size() int {
-	return xxx_messageInfo_WanliunoAddress.Size(m)
+func (m *EthereumAddress) XXX_Size() int {
+	return xxx_messageInfo_EthereumAddress.Size(m)
 }
-func (m *WanliunoAddress) XXX_DiscardUnknown() {
-	xxx_messageInfo_WanliunoAddress.DiscardUnknown(m)
+func (m *EthereumAddress) XXX_DiscardUnknown() {
+	xxx_messageInfo_EthereumAddress.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_WanliunoAddress proto.InternalMessageInfo
+var xxx_messageInfo_EthereumAddress proto.InternalMessageInfo
 
-func (m *WanliunoAddress) GetAddressBin() []byte {
+func (m *EthereumAddress) GetAddressBin() []byte {
 	if m != nil {
 		return m.AddressBin
 	}
 	return nil
 }
 
-func (m *WanliunoAddress) GetAddressHex() string {
+func (m *EthereumAddress) GetAddressHex() string {
 	if m != nil && m.AddressHex != nil {
 		return *m.AddressHex
 	}
@@ -230,9 +230,9 @@ func (m *WanliunoAddress) GetAddressHex() string {
 // All fields are optional from the protocol's point of view. Each field defaults to value `0` if missing.
 // Note: the first at most 1024 bytes of data MUST be transmitted as part of this message.
 // @start
-// @next WanliunoTxRequest
+// @next EthereumTxRequest
 // @next Failure
-type WanliunoSignTx struct {
+type EthereumSignTx struct {
 	AddressN             []uint32 `protobuf:"varint,1,rep,name=address_n,json=addressN" json:"address_n,omitempty"`
 	Nonce                []byte   `protobuf:"bytes,2,opt,name=nonce" json:"nonce,omitempty"`
 	GasPrice             []byte   `protobuf:"bytes,3,opt,name=gas_price,json=gasPrice" json:"gas_price,omitempty"`
@@ -249,102 +249,102 @@ type WanliunoSignTx struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *WanliunoSignTx) Reset()         { *m = WanliunoSignTx{} }
-func (m *WanliunoSignTx) String() string { return proto.CompactTextString(m) }
-func (*WanliunoSignTx) ProtoMessage()    {}
-func (*WanliunoSignTx) Descriptor() ([]byte, []int) {
+func (m *EthereumSignTx) Reset()         { *m = EthereumSignTx{} }
+func (m *EthereumSignTx) String() string { return proto.CompactTextString(m) }
+func (*EthereumSignTx) ProtoMessage()    {}
+func (*EthereumSignTx) Descriptor() ([]byte, []int) {
 	return fileDescriptor_cb33f46ba915f15c, []int{4}
 }
 
-func (m *WanliunoSignTx) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_WanliunoSignTx.Unmarshal(m, b)
+func (m *EthereumSignTx) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_EthereumSignTx.Unmarshal(m, b)
 }
-func (m *WanliunoSignTx) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_WanliunoSignTx.Marshal(b, m, deterministic)
+func (m *EthereumSignTx) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_EthereumSignTx.Marshal(b, m, deterministic)
 }
-func (m *WanliunoSignTx) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_WanliunoSignTx.Merge(m, src)
+func (m *EthereumSignTx) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EthereumSignTx.Merge(m, src)
 }
-func (m *WanliunoSignTx) XXX_Size() int {
-	return xxx_messageInfo_WanliunoSignTx.Size(m)
+func (m *EthereumSignTx) XXX_Size() int {
+	return xxx_messageInfo_EthereumSignTx.Size(m)
 }
-func (m *WanliunoSignTx) XXX_DiscardUnknown() {
-	xxx_messageInfo_WanliunoSignTx.DiscardUnknown(m)
+func (m *EthereumSignTx) XXX_DiscardUnknown() {
+	xxx_messageInfo_EthereumSignTx.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_WanliunoSignTx proto.InternalMessageInfo
+var xxx_messageInfo_EthereumSignTx proto.InternalMessageInfo
 
-func (m *WanliunoSignTx) GetAddressN() []uint32 {
+func (m *EthereumSignTx) GetAddressN() []uint32 {
 	if m != nil {
 		return m.AddressN
 	}
 	return nil
 }
 
-func (m *WanliunoSignTx) GetNonce() []byte {
+func (m *EthereumSignTx) GetNonce() []byte {
 	if m != nil {
 		return m.Nonce
 	}
 	return nil
 }
 
-func (m *WanliunoSignTx) GetGasPrice() []byte {
+func (m *EthereumSignTx) GetGasPrice() []byte {
 	if m != nil {
 		return m.GasPrice
 	}
 	return nil
 }
 
-func (m *WanliunoSignTx) GetGasLimit() []byte {
+func (m *EthereumSignTx) GetGasLimit() []byte {
 	if m != nil {
 		return m.GasLimit
 	}
 	return nil
 }
 
-func (m *WanliunoSignTx) GetToBin() []byte {
+func (m *EthereumSignTx) GetToBin() []byte {
 	if m != nil {
 		return m.ToBin
 	}
 	return nil
 }
 
-func (m *WanliunoSignTx) GetToHex() string {
+func (m *EthereumSignTx) GetToHex() string {
 	if m != nil && m.ToHex != nil {
 		return *m.ToHex
 	}
 	return ""
 }
 
-func (m *WanliunoSignTx) GetValue() []byte {
+func (m *EthereumSignTx) GetValue() []byte {
 	if m != nil {
 		return m.Value
 	}
 	return nil
 }
 
-func (m *WanliunoSignTx) GetDataInitialChunk() []byte {
+func (m *EthereumSignTx) GetDataInitialChunk() []byte {
 	if m != nil {
 		return m.DataInitialChunk
 	}
 	return nil
 }
 
-func (m *WanliunoSignTx) GetDataLength() uint32 {
+func (m *EthereumSignTx) GetDataLength() uint32 {
 	if m != nil && m.DataLength != nil {
 		return *m.DataLength
 	}
 	return 0
 }
 
-func (m *WanliunoSignTx) GetChainId() uint32 {
+func (m *EthereumSignTx) GetChainId() uint32 {
 	if m != nil && m.ChainId != nil {
 		return *m.ChainId
 	}
 	return 0
 }
 
-func (m *WanliunoSignTx) GetTxType() uint32 {
+func (m *EthereumSignTx) GetTxType() uint32 {
 	if m != nil && m.TxType != nil {
 		return *m.TxType
 	}
@@ -356,8 +356,8 @@ func (m *WanliunoSignTx) GetTxType() uint32 {
 // If data_length is set, device awaits that many more bytes of payload.
 // Otherwise, the signature_* fields contain the computed transaction signature. All three fields will be present.
 // @end
-// @next WanliunoTxAck
-type WanliunoTxRequest struct {
+// @next EthereumTxAck
+type EthereumTxRequest struct {
 	DataLength           *uint32  `protobuf:"varint,1,opt,name=data_length,json=dataLength" json:"data_length,omitempty"`
 	SignatureV           *uint32  `protobuf:"varint,2,opt,name=signature_v,json=signatureV" json:"signature_v,omitempty"`
 	SignatureR           []byte   `protobuf:"bytes,3,opt,name=signature_r,json=signatureR" json:"signature_r,omitempty"`
@@ -367,53 +367,53 @@ type WanliunoTxRequest struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *WanliunoTxRequest) Reset()         { *m = WanliunoTxRequest{} }
-func (m *WanliunoTxRequest) String() string { return proto.CompactTextString(m) }
-func (*WanliunoTxRequest) ProtoMessage()    {}
-func (*WanliunoTxRequest) Descriptor() ([]byte, []int) {
+func (m *EthereumTxRequest) Reset()         { *m = EthereumTxRequest{} }
+func (m *EthereumTxRequest) String() string { return proto.CompactTextString(m) }
+func (*EthereumTxRequest) ProtoMessage()    {}
+func (*EthereumTxRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_cb33f46ba915f15c, []int{5}
 }
 
-func (m *WanliunoTxRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_WanliunoTxRequest.Unmarshal(m, b)
+func (m *EthereumTxRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_EthereumTxRequest.Unmarshal(m, b)
 }
-func (m *WanliunoTxRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_WanliunoTxRequest.Marshal(b, m, deterministic)
+func (m *EthereumTxRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_EthereumTxRequest.Marshal(b, m, deterministic)
 }
-func (m *WanliunoTxRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_WanliunoTxRequest.Merge(m, src)
+func (m *EthereumTxRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EthereumTxRequest.Merge(m, src)
 }
-func (m *WanliunoTxRequest) XXX_Size() int {
-	return xxx_messageInfo_WanliunoTxRequest.Size(m)
+func (m *EthereumTxRequest) XXX_Size() int {
+	return xxx_messageInfo_EthereumTxRequest.Size(m)
 }
-func (m *WanliunoTxRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_WanliunoTxRequest.DiscardUnknown(m)
+func (m *EthereumTxRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_EthereumTxRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_WanliunoTxRequest proto.InternalMessageInfo
+var xxx_messageInfo_EthereumTxRequest proto.InternalMessageInfo
 
-func (m *WanliunoTxRequest) GetDataLength() uint32 {
+func (m *EthereumTxRequest) GetDataLength() uint32 {
 	if m != nil && m.DataLength != nil {
 		return *m.DataLength
 	}
 	return 0
 }
 
-func (m *WanliunoTxRequest) GetSignatureV() uint32 {
+func (m *EthereumTxRequest) GetSignatureV() uint32 {
 	if m != nil && m.SignatureV != nil {
 		return *m.SignatureV
 	}
 	return 0
 }
 
-func (m *WanliunoTxRequest) GetSignatureR() []byte {
+func (m *EthereumTxRequest) GetSignatureR() []byte {
 	if m != nil {
 		return m.SignatureR
 	}
 	return nil
 }
 
-func (m *WanliunoTxRequest) GetSignatureS() []byte {
+func (m *EthereumTxRequest) GetSignatureS() []byte {
 	if m != nil {
 		return m.SignatureS
 	}
@@ -422,40 +422,40 @@ func (m *WanliunoTxRequest) GetSignatureS() []byte {
 
 //*
 // Request: Transaction payload data.
-// @next WanliunoTxRequest
-type WanliunoTxAck struct {
+// @next EthereumTxRequest
+type EthereumTxAck struct {
 	DataChunk            []byte   `protobuf:"bytes,1,opt,name=data_chunk,json=dataChunk" json:"data_chunk,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *WanliunoTxAck) Reset()         { *m = WanliunoTxAck{} }
-func (m *WanliunoTxAck) String() string { return proto.CompactTextString(m) }
-func (*WanliunoTxAck) ProtoMessage()    {}
-func (*WanliunoTxAck) Descriptor() ([]byte, []int) {
+func (m *EthereumTxAck) Reset()         { *m = EthereumTxAck{} }
+func (m *EthereumTxAck) String() string { return proto.CompactTextString(m) }
+func (*EthereumTxAck) ProtoMessage()    {}
+func (*EthereumTxAck) Descriptor() ([]byte, []int) {
 	return fileDescriptor_cb33f46ba915f15c, []int{6}
 }
 
-func (m *WanliunoTxAck) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_WanliunoTxAck.Unmarshal(m, b)
+func (m *EthereumTxAck) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_EthereumTxAck.Unmarshal(m, b)
 }
-func (m *WanliunoTxAck) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_WanliunoTxAck.Marshal(b, m, deterministic)
+func (m *EthereumTxAck) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_EthereumTxAck.Marshal(b, m, deterministic)
 }
-func (m *WanliunoTxAck) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_WanliunoTxAck.Merge(m, src)
+func (m *EthereumTxAck) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EthereumTxAck.Merge(m, src)
 }
-func (m *WanliunoTxAck) XXX_Size() int {
-	return xxx_messageInfo_WanliunoTxAck.Size(m)
+func (m *EthereumTxAck) XXX_Size() int {
+	return xxx_messageInfo_EthereumTxAck.Size(m)
 }
-func (m *WanliunoTxAck) XXX_DiscardUnknown() {
-	xxx_messageInfo_WanliunoTxAck.DiscardUnknown(m)
+func (m *EthereumTxAck) XXX_DiscardUnknown() {
+	xxx_messageInfo_EthereumTxAck.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_WanliunoTxAck proto.InternalMessageInfo
+var xxx_messageInfo_EthereumTxAck proto.InternalMessageInfo
 
-func (m *WanliunoTxAck) GetDataChunk() []byte {
+func (m *EthereumTxAck) GetDataChunk() []byte {
 	if m != nil {
 		return m.DataChunk
 	}
@@ -465,9 +465,9 @@ func (m *WanliunoTxAck) GetDataChunk() []byte {
 //*
 // Request: Ask device to sign message
 // @start
-// @next WanliunoMessageSignature
+// @next EthereumMessageSignature
 // @next Failure
-type WanliunoSignMessage struct {
+type EthereumSignMessage struct {
 	AddressN             []uint32 `protobuf:"varint,1,rep,name=address_n,json=addressN" json:"address_n,omitempty"`
 	Message              []byte   `protobuf:"bytes,2,opt,name=message" json:"message,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -475,39 +475,39 @@ type WanliunoSignMessage struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *WanliunoSignMessage) Reset()         { *m = WanliunoSignMessage{} }
-func (m *WanliunoSignMessage) String() string { return proto.CompactTextString(m) }
-func (*WanliunoSignMessage) ProtoMessage()    {}
-func (*WanliunoSignMessage) Descriptor() ([]byte, []int) {
+func (m *EthereumSignMessage) Reset()         { *m = EthereumSignMessage{} }
+func (m *EthereumSignMessage) String() string { return proto.CompactTextString(m) }
+func (*EthereumSignMessage) ProtoMessage()    {}
+func (*EthereumSignMessage) Descriptor() ([]byte, []int) {
 	return fileDescriptor_cb33f46ba915f15c, []int{7}
 }
 
-func (m *WanliunoSignMessage) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_WanliunoSignMessage.Unmarshal(m, b)
+func (m *EthereumSignMessage) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_EthereumSignMessage.Unmarshal(m, b)
 }
-func (m *WanliunoSignMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_WanliunoSignMessage.Marshal(b, m, deterministic)
+func (m *EthereumSignMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_EthereumSignMessage.Marshal(b, m, deterministic)
 }
-func (m *WanliunoSignMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_WanliunoSignMessage.Merge(m, src)
+func (m *EthereumSignMessage) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EthereumSignMessage.Merge(m, src)
 }
-func (m *WanliunoSignMessage) XXX_Size() int {
-	return xxx_messageInfo_WanliunoSignMessage.Size(m)
+func (m *EthereumSignMessage) XXX_Size() int {
+	return xxx_messageInfo_EthereumSignMessage.Size(m)
 }
-func (m *WanliunoSignMessage) XXX_DiscardUnknown() {
-	xxx_messageInfo_WanliunoSignMessage.DiscardUnknown(m)
+func (m *EthereumSignMessage) XXX_DiscardUnknown() {
+	xxx_messageInfo_EthereumSignMessage.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_WanliunoSignMessage proto.InternalMessageInfo
+var xxx_messageInfo_EthereumSignMessage proto.InternalMessageInfo
 
-func (m *WanliunoSignMessage) GetAddressN() []uint32 {
+func (m *EthereumSignMessage) GetAddressN() []uint32 {
 	if m != nil {
 		return m.AddressN
 	}
 	return nil
 }
 
-func (m *WanliunoSignMessage) GetMessage() []byte {
+func (m *EthereumSignMessage) GetMessage() []byte {
 	if m != nil {
 		return m.Message
 	}
@@ -517,7 +517,7 @@ func (m *WanliunoSignMessage) GetMessage() []byte {
 //*
 // Response: Signed message
 // @end
-type WanliunoMessageSignature struct {
+type EthereumMessageSignature struct {
 	AddressBin           []byte   `protobuf:"bytes,1,opt,name=addressBin" json:"addressBin,omitempty"`
 	Signature            []byte   `protobuf:"bytes,2,opt,name=signature" json:"signature,omitempty"`
 	AddressHex           *string  `protobuf:"bytes,3,opt,name=addressHex" json:"addressHex,omitempty"`
@@ -526,46 +526,46 @@ type WanliunoMessageSignature struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *WanliunoMessageSignature) Reset()         { *m = WanliunoMessageSignature{} }
-func (m *WanliunoMessageSignature) String() string { return proto.CompactTextString(m) }
-func (*WanliunoMessageSignature) ProtoMessage()    {}
-func (*WanliunoMessageSignature) Descriptor() ([]byte, []int) {
+func (m *EthereumMessageSignature) Reset()         { *m = EthereumMessageSignature{} }
+func (m *EthereumMessageSignature) String() string { return proto.CompactTextString(m) }
+func (*EthereumMessageSignature) ProtoMessage()    {}
+func (*EthereumMessageSignature) Descriptor() ([]byte, []int) {
 	return fileDescriptor_cb33f46ba915f15c, []int{8}
 }
 
-func (m *WanliunoMessageSignature) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_WanliunoMessageSignature.Unmarshal(m, b)
+func (m *EthereumMessageSignature) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_EthereumMessageSignature.Unmarshal(m, b)
 }
-func (m *WanliunoMessageSignature) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_WanliunoMessageSignature.Marshal(b, m, deterministic)
+func (m *EthereumMessageSignature) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_EthereumMessageSignature.Marshal(b, m, deterministic)
 }
-func (m *WanliunoMessageSignature) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_WanliunoMessageSignature.Merge(m, src)
+func (m *EthereumMessageSignature) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EthereumMessageSignature.Merge(m, src)
 }
-func (m *WanliunoMessageSignature) XXX_Size() int {
-	return xxx_messageInfo_WanliunoMessageSignature.Size(m)
+func (m *EthereumMessageSignature) XXX_Size() int {
+	return xxx_messageInfo_EthereumMessageSignature.Size(m)
 }
-func (m *WanliunoMessageSignature) XXX_DiscardUnknown() {
-	xxx_messageInfo_WanliunoMessageSignature.DiscardUnknown(m)
+func (m *EthereumMessageSignature) XXX_DiscardUnknown() {
+	xxx_messageInfo_EthereumMessageSignature.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_WanliunoMessageSignature proto.InternalMessageInfo
+var xxx_messageInfo_EthereumMessageSignature proto.InternalMessageInfo
 
-func (m *WanliunoMessageSignature) GetAddressBin() []byte {
+func (m *EthereumMessageSignature) GetAddressBin() []byte {
 	if m != nil {
 		return m.AddressBin
 	}
 	return nil
 }
 
-func (m *WanliunoMessageSignature) GetSignature() []byte {
+func (m *EthereumMessageSignature) GetSignature() []byte {
 	if m != nil {
 		return m.Signature
 	}
 	return nil
 }
 
-func (m *WanliunoMessageSignature) GetAddressHex() string {
+func (m *EthereumMessageSignature) GetAddressHex() string {
 	if m != nil && m.AddressHex != nil {
 		return *m.AddressHex
 	}
@@ -577,7 +577,7 @@ func (m *WanliunoMessageSignature) GetAddressHex() string {
 // @start
 // @next Success
 // @next Failure
-type WanliunoVerifyMessage struct {
+type EthereumVerifyMessage struct {
 	AddressBin           []byte   `protobuf:"bytes,1,opt,name=addressBin" json:"addressBin,omitempty"`
 	Signature            []byte   `protobuf:"bytes,2,opt,name=signature" json:"signature,omitempty"`
 	Message              []byte   `protobuf:"bytes,3,opt,name=message" json:"message,omitempty"`
@@ -587,53 +587,53 @@ type WanliunoVerifyMessage struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *WanliunoVerifyMessage) Reset()         { *m = WanliunoVerifyMessage{} }
-func (m *WanliunoVerifyMessage) String() string { return proto.CompactTextString(m) }
-func (*WanliunoVerifyMessage) ProtoMessage()    {}
-func (*WanliunoVerifyMessage) Descriptor() ([]byte, []int) {
+func (m *EthereumVerifyMessage) Reset()         { *m = EthereumVerifyMessage{} }
+func (m *EthereumVerifyMessage) String() string { return proto.CompactTextString(m) }
+func (*EthereumVerifyMessage) ProtoMessage()    {}
+func (*EthereumVerifyMessage) Descriptor() ([]byte, []int) {
 	return fileDescriptor_cb33f46ba915f15c, []int{9}
 }
 
-func (m *WanliunoVerifyMessage) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_WanliunoVerifyMessage.Unmarshal(m, b)
+func (m *EthereumVerifyMessage) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_EthereumVerifyMessage.Unmarshal(m, b)
 }
-func (m *WanliunoVerifyMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_WanliunoVerifyMessage.Marshal(b, m, deterministic)
+func (m *EthereumVerifyMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_EthereumVerifyMessage.Marshal(b, m, deterministic)
 }
-func (m *WanliunoVerifyMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_WanliunoVerifyMessage.Merge(m, src)
+func (m *EthereumVerifyMessage) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_EthereumVerifyMessage.Merge(m, src)
 }
-func (m *WanliunoVerifyMessage) XXX_Size() int {
-	return xxx_messageInfo_WanliunoVerifyMessage.Size(m)
+func (m *EthereumVerifyMessage) XXX_Size() int {
+	return xxx_messageInfo_EthereumVerifyMessage.Size(m)
 }
-func (m *WanliunoVerifyMessage) XXX_DiscardUnknown() {
-	xxx_messageInfo_WanliunoVerifyMessage.DiscardUnknown(m)
+func (m *EthereumVerifyMessage) XXX_DiscardUnknown() {
+	xxx_messageInfo_EthereumVerifyMessage.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_WanliunoVerifyMessage proto.InternalMessageInfo
+var xxx_messageInfo_EthereumVerifyMessage proto.InternalMessageInfo
 
-func (m *WanliunoVerifyMessage) GetAddressBin() []byte {
+func (m *EthereumVerifyMessage) GetAddressBin() []byte {
 	if m != nil {
 		return m.AddressBin
 	}
 	return nil
 }
 
-func (m *WanliunoVerifyMessage) GetSignature() []byte {
+func (m *EthereumVerifyMessage) GetSignature() []byte {
 	if m != nil {
 		return m.Signature
 	}
 	return nil
 }
 
-func (m *WanliunoVerifyMessage) GetMessage() []byte {
+func (m *EthereumVerifyMessage) GetMessage() []byte {
 	if m != nil {
 		return m.Message
 	}
 	return nil
 }
 
-func (m *WanliunoVerifyMessage) GetAddressHex() string {
+func (m *EthereumVerifyMessage) GetAddressHex() string {
 	if m != nil && m.AddressHex != nil {
 		return *m.AddressHex
 	}
@@ -641,16 +641,16 @@ func (m *WanliunoVerifyMessage) GetAddressHex() string {
 }
 
 func init() {
-	proto.RegisterType((*WanliunoGetPublicKey)(nil), "hw.trezor.messages.wanliuno.WanliunoGetPublicKey")
-	proto.RegisterType((*WanliunoPublicKey)(nil), "hw.trezor.messages.wanliuno.WanliunoPublicKey")
-	proto.RegisterType((*WanliunoGetAddress)(nil), "hw.trezor.messages.wanliuno.WanliunoGetAddress")
-	proto.RegisterType((*WanliunoAddress)(nil), "hw.trezor.messages.wanliuno.WanliunoAddress")
-	proto.RegisterType((*WanliunoSignTx)(nil), "hw.trezor.messages.wanliuno.WanliunoSignTx")
-	proto.RegisterType((*WanliunoTxRequest)(nil), "hw.trezor.messages.wanliuno.WanliunoTxRequest")
-	proto.RegisterType((*WanliunoTxAck)(nil), "hw.trezor.messages.wanliuno.WanliunoTxAck")
-	proto.RegisterType((*WanliunoSignMessage)(nil), "hw.trezor.messages.wanliuno.WanliunoSignMessage")
-	proto.RegisterType((*WanliunoMessageSignature)(nil), "hw.trezor.messages.wanliuno.WanliunoMessageSignature")
-	proto.RegisterType((*WanliunoVerifyMessage)(nil), "hw.trezor.messages.wanliuno.WanliunoVerifyMessage")
+	proto.RegisterType((*EthereumGetPublicKey)(nil), "hw.trezor.messages.wanliuno.EthereumGetPublicKey")
+	proto.RegisterType((*EthereumPublicKey)(nil), "hw.trezor.messages.wanliuno.EthereumPublicKey")
+	proto.RegisterType((*EthereumGetAddress)(nil), "hw.trezor.messages.wanliuno.EthereumGetAddress")
+	proto.RegisterType((*EthereumAddress)(nil), "hw.trezor.messages.wanliuno.EthereumAddress")
+	proto.RegisterType((*EthereumSignTx)(nil), "hw.trezor.messages.wanliuno.EthereumSignTx")
+	proto.RegisterType((*EthereumTxRequest)(nil), "hw.trezor.messages.wanliuno.EthereumTxRequest")
+	proto.RegisterType((*EthereumTxAck)(nil), "hw.trezor.messages.wanliuno.EthereumTxAck")
+	proto.RegisterType((*EthereumSignMessage)(nil), "hw.trezor.messages.wanliuno.EthereumSignMessage")
+	proto.RegisterType((*EthereumMessageSignature)(nil), "hw.trezor.messages.wanliuno.EthereumMessageSignature")
+	proto.RegisterType((*EthereumVerifyMessage)(nil), "hw.trezor.messages.wanliuno.EthereumVerifyMessage")
 }
 
 func init() { proto.RegisterFile("messages-wanliuno.proto", fileDescriptor_cb33f46ba915f15c) }

@@ -1,4 +1,4 @@
-// Copyright 2020 The go-ethereum Authors
+// Copyright 2020 The go-wanliuno Authors
 // This file is part of the go-wanliuno library.
 //
 // The go-wanliuno library is free software: you can redistribute it and/or modify
